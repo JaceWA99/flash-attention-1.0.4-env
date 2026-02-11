@@ -1,3 +1,6 @@
+## NOTE: This is a replica of the original 1.0.4 FlashAttention repo with an added environment file for builds on Nvidia GPUs
+Original codebase: https://github.com/Dao-AILab/flash-attention
+
 # FlashAttention
 This repository provides the official implementation of FlashAttention from the
 following paper.
