@@ -103,11 +103,10 @@ torch_dir = torch.__path__[0]
 if os.path.exists(os.path.join(torch_dir, "include", "ATen", "CUDAGeneratorImpl.h")):
     generator_flag = ["-DOLD_GENERATOR_PATH"]
 
-if "sdist" not in sys.argv:
-    raise_if_cuda_home_none("flash_attn")
-    _, bare_metal_version = get_cuda_bare_metal_version(CUDA_HOME)
-    if bare_metal_version < Version("11.0"):
-        raise RuntimeError("FlashAttention is only supported on CUDA 11 and above")
+raise_if_cuda_home_none("flash_attn")
+_, bare_metal_version = get_cuda_bare_metal_version(CUDA_HOME)
+if bare_metal_version < Version("11.0"):
+    raise RuntimeError("FlashAttention is only supported on CUDA 11 and above")
 
 cc_flag = []
 cc_flag.append("-gencode")
