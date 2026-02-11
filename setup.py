@@ -117,7 +117,11 @@ if bare_metal_version >= Version("11.8"):
     cc_flag.append("-gencode")
     cc_flag.append("arch=compute_90,code=sm_90")
 
-subprocess.run(["git", "submodule", "update", "--init", "csrc/flash_attn/cutlass"])
+if not os.path.exists("csrc/flash_attn/cutlass/include"):
+    raise RuntimeError(
+        "CUTLASS submodule not found. "
+        "This sdist expects CUTLASS sources to be vendored."
+    )
 ext_modules.append(
     CUDAExtension(
         name="flash_attn_cuda",
@@ -162,7 +166,7 @@ ext_modules.append(
 
 setup(
     name="flash-attn-104-env",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(
         exclude=("build", "csrc", "include", "tests", "dist", "docs", "benchmarks", "flash_attn.egg-info",)
     ),
