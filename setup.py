@@ -104,11 +104,11 @@ if os.path.exists(os.path.join(torch_dir, "include", "ATen", "CUDAGeneratorImpl.
     generator_flag = ["-DOLD_GENERATOR_PATH"]
 
 raise_if_cuda_home_none("flash_attn")
+# Check, if CUDA11 is installed for compute capability 8.0
+cc_flag = []
 _, bare_metal_version = get_cuda_bare_metal_version(CUDA_HOME)
 if bare_metal_version < Version("11.0"):
     raise RuntimeError("FlashAttention is only supported on CUDA 11 and above")
-
-cc_flag = []
 cc_flag.append("-gencode")
 cc_flag.append("arch=compute_75,code=sm_75")
 cc_flag.append("-gencode")
@@ -117,11 +117,6 @@ if bare_metal_version >= Version("11.8"):
     cc_flag.append("-gencode")
     cc_flag.append("arch=compute_90,code=sm_90")
 
-if not os.path.exists("csrc/flash_attn/cutlass/include"):
-    raise RuntimeError(
-        "CUTLASS submodule not found. "
-        "This sdist expects CUTLASS sources to be vendored."
-    )
 ext_modules.append(
     CUDAExtension(
         name="flash_attn_cuda",
