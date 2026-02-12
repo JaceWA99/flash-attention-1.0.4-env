@@ -156,6 +156,10 @@ ext_modules.append(
             Path(this_dir) / 'csrc' / 'flash_attn' / 'src',
             Path(this_dir) / 'csrc' / 'flash_attn' / 'cutlass' / 'include',
         ],
+        extra_link_args=[
+            "-Wl, -rpath,$ORIGIN/torch/lib",
+            "-Wl, -rpath,$ORIGIN",
+        ],
     )
 )
 
