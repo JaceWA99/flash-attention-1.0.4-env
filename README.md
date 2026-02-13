@@ -1,5 +1,6 @@
 ## NOTE: This is a replica of the original 1.0.4 FlashAttention repo with an added environment file for builds on Nvidia GPUs
 - Original codebase: https://github.com/Dao-AILab/flash-attention
+- Submodule Nvidia cutlass added as normal files in `csrc/flash_attn/cutlass/`: https://github.com/NVIDIA/cutlass
 - PyPi project: https://pypi.org/project/flash-attn-104-env/
 - The goal of this repo is to build a .tar.gz source file that you can install without the `--no-build-isolation` flag.
 - Target image: nvidia/cuda:12.1.1-devel-ubuntu22.04
