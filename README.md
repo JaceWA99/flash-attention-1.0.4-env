@@ -1,7 +1,8 @@
 ## NOTE: This is a replica of the original 1.0.4 FlashAttention repo with an added environment file for builds on Nvidia GPUs
-Original codebase: https://github.com/Dao-AILab/flash-attention
-PyPi project: https://pypi.org/project/flash-attn-104-env/
-Building wheel to work with image: nvidia/cuda:12.1.1-devel-ubuntu22.04
+- Original codebase: https://github.com/Dao-AILab/flash-attention
+- PyPi project: https://pypi.org/project/flash-attn-104-env/
+- The goal of this repo is to build a .tar.gz source file that you can install without the `--no-build-isolation` flag.
+- Target image: nvidia/cuda:12.1.1-devel-ubuntu22.04
 
 # FlashAttention
 This repository provides the official implementation of FlashAttention from the
